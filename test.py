@@ -9,15 +9,15 @@ characters = ' '+ string.digits + string.ascii_lowercase+string.punctuation
 
 
 def my_ctc_decode(y_pred):
-  decode =(np.ones((1,16))*(-1)).astype('int64')
-  idx=0;prev=69;
-  for i in range(16):
-    t=np.argmax(y_pred[0][i])
-    if t!=69:
-      if t!=prev:
-        decode[0][idx]=t;idx=idx+1;
-    prev=t
-  return decode
+	decode =(np.ones((1,16))*(-1)).astype('int64');
+	idx=0;prev=69;
+	for i in range(16):
+		t=np.argmax(y_pred[0][i])
+		if t!=69:
+			if t!=prev:
+				decode[0][idx]=t;idx=idx+1;
+		prev=t
+	return decode
 
 
 def main():
