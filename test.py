@@ -22,22 +22,22 @@ def my_ctc_decode(y_pred):
 
 def main():
 	parser = argparse.ArgumentParser()
-    parser.add_argument('--model', help='Model name to use for classification', type=str)
-    parser.add_argument('--inputDir', help='Where to read the captchas to break. E.g. data/', type=str)
-    parser.add_argument('--output', help='File where the classifications should be saved', type=str)
-    args = parser.parse_args()
+	parser.add_argument('--model', help='Path to the model', type=str)
+	parser.add_argument('--inputDir', help='Where to read the captchas to break. E.g. data/', type=str)
+	parser.add_argument('--output', help='File where the classifications should be saved', type=str)
+	args = parser.parse_args()
 
-    if args.model is None:
-        print("Please specify the model path")
-        exit(1)
+	if args.model is None:
+		print("Please specify the model path")
+		exit(1)
 
-    if args.inputDir is None:
-        print("Please specify the directory with captchas to break")
-        exit(1)
+	if args.inputDir is None:
+		print("Please specify the directory with captchas to break")
+		exit(1)
 
-    if args.output is None:
-        print("Please specify the path to the output file")
-        exit(1)
+	if args.output is None:
+		print("Please specify the path to the output file")
+		exit(1)
 
 
 	interpreter = tflite.Interpreter(model_path=args.model)
