@@ -63,8 +63,8 @@ def main():
 			y_pred = interpreter.get_tensor(output_details[0]['index'])
 			out=my_ctc_decode(y_pred)[:,:6];#print(out)
 			out = ''.join([characters[x] for x in out[0]])
-			print(file+" "+out.strip(' '))
-			output_file.write(file + "," + out + "\n")
+			#print(file+" "+out.strip(' '))
+			output_file.write(file + "," + out.strip(' ') + "\n")
 	time_end=time.time()
 	print('time cost',time_end-time_start,'s')
 
