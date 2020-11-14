@@ -2,6 +2,7 @@ import tflite_runtime.interpreter as tflite
 from PIL import Image
 import numpy as np
 import string
+import time
 import argparse
 import os
 
@@ -51,6 +52,8 @@ def main():
 		if file.endswith('.png'):
 			files.append(file)
 	files.sort()
+	time_start=time.time()
+
 	with open(args.output, 'w') as output_file:
 		for file in files:
 			f = path+file;ff = Image.open(f);dd = np.array(ff).astype('float32');
@@ -60,11 +63,10 @@ def main():
 			y_pred = interpreter.get_tensor(output_details[0]['index'])
 			out=my_ctc_decode(y_pred)[:,:6];#print(out)
 			out = ''.join([characters[x] for x in out[0]])
-			print(file+" "+out)
+			print(file+" "+out.strip(' '))
 			output_file.write(file + "," + out + "\n")
-
-
-
+	time_end=time.time()
+	print('time cost',time_end-time_start,'s')
 
 
 if __name__ == '__main__':
